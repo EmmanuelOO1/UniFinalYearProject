@@ -4,13 +4,6 @@ void main() {
   runApp(const MyApp());
 }
 
-class Sensor{
-  int data = 5;
-  int userData(){
-      return(data);
-  }
-}
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

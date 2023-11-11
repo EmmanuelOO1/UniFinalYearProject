@@ -1,9 +1,9 @@
 
 
 
-class Sensor() {
-  clas
+class Sensor{
   int data = 5;
-  int get userData(int data) {
-    return (data);
-}}
+  int userData(){
+    return(data);
+  }
+}

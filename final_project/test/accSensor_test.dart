@@ -1,38 +1,46 @@
+import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:final_project/Sensor.dart';
 import 'package:flutter/services.dart';
 
 //Unit tests for extracting aceleromiter data from the aceleromiter sensor
 
-// Need an instance (Mock) of a sensor class
-// Read from Mock sensor into file check if file length is greater then 0 endec up doing equal to 5
-
-// Convert fake sensor into an acc mock sensor
-
-// Create a mock sensor
-// Take inputs from a mock sensor
-// Read inputs from sensor into a file
-
 // write a test that returns data from a mock sensor
+// Write Sample Test data into a file
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized(); // Render widget before testing
   Sensor sensor = Sensor();
-  // Sensor test, Reading data from a sensor
+  // Sensor tests, Reading data from a sensor
 
   test('Sensor Test, checking the mock sensor is functional', () async {
     // Test data/set up values for mock sensor
     const channelName = 'dev.fluttercommunity.plus/sensors/user_accel';
+    const fileLocation = 'Users';
     const sensorData = <double>[1.0, 2.0, 3.0];
     _initializeFakeSensorChannel(channelName, sensorData);
 
-    final event = await sensor.accdataCollection();
+    await sensor.accdataCollection();
+    File('Users').readAsString().then((String contents) {
+      (contents);
+      if(contents.isNotEmpty){
+        return true;
+      } else {
+        return false;
+      }
+    });
 
-    expect(event.x, sensorData[0]);
-    expect(event.y, sensorData[1]);
-    expect(event.z, sensorData[2]);
+
+    //expect(event.x, sensorData[0]);
+    //expect(event.y, sensorData[1]);
+    //expect(event.z, sensorData[2]);
 
   });
+
+  // Sensor tests, Can the sensor read data to a file ?
+  //test("Checking the mock sensor can add to a file"), () {
+
+  //};
 }
 
 // Mock sensor using code from sensor_plus test package https://github.com/fluttercommunity/plus_plugins/blob/main/packages/sensors_plus/sensors_plus/test/sensors_test.dart

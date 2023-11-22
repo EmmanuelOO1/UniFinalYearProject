@@ -11,6 +11,8 @@ import 'package:flutter/services.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized(); // Render widget before testing
   Sensor sensor = Sensor();
+  tearDown(() async => await File('Users').delete()); // Make sure to delete the file if it has already been made
+
   // Sensor tests, Reading data from a sensor
 
   test('Sensor Test, checking the mock sensor is functional', () async {
@@ -20,16 +22,22 @@ void main() {
     const sensorData = <double>[1.0, 2.0, 3.0];
     _initializeFakeSensorChannel(channelName, sensorData);
 
+    var x;
     await sensor.accdataCollection();
-    File('Users').readAsString().then((String contents) {
-      (contents);
-      if(contents.isNotEmpty){
-        return true;
-      } else {
-        return false;
-      }
-    });
-
+    x = await File('Users').readAsString();
+    // File('Users').readAsString().then((String contents) {
+    //   (contents);
+    //   x = contents;
+    //
+    //
+    expect(x, isNotEmpty);
+      // if(x.isNotEmpty){
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+    // });
+    //expect(x.length, 0);
 
     //expect(event.x, sensorData[0]);
     //expect(event.y, sensorData[1]);

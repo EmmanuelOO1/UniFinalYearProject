@@ -1,3 +1,5 @@
+import 'package:final_project/Sensor.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -67,6 +69,16 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+  @override
+  void initState() {
+    super.initState();
+    Sensor sensor = Sensor(); // Initialize sensor class
+
+    // I am hardcoding the file name here
+    final file = File('/sdcard/Download/accelerometer.txt');
+    //Start getting accelerometer data
+    sensor.accdataCollection(file);
   }
 
   @override

@@ -23,7 +23,8 @@ void main() {
     _initializeFakeSensorChannel(channelName, sensorData);
 
     var x;
-    await sensor.accdataCollection();
+    final file = File('Users');
+    await sensor.accdataCollection(file);
     x = await File('Users').readAsString();
     // File('Users').readAsString().then((String contents) {
     //   (contents);
@@ -78,6 +79,3 @@ void _initializeFakeSensorChannel(String channelName, List<double> sensorData) {
     }
   });
 }
-
-//     await tester.tap(find.byIcon(Icons.add));
-//     expect(find.text('1'), findsOneWidget);

@@ -7,9 +7,14 @@ import 'dart:io';
 class Sensor {
   // Documentation on sensors plus https://pub.dev/packages/sensors_plus
   accdataCollection(File file) async {
-      var event = await userAccelerometerEvents.first;
-      //final file = File("Users");
-      await file?.writeAsString('$event \n', mode: FileMode.append);
+       userAccelerometerEvents.listen(
+          (UserAccelerometerEvent event) async {
+            await file?.writeAsString('$event \n', mode: FileMode.append);
+          }
+      );
+
+
+
 
   }
 // example acc data [AccelerometerEvent (x: 0.0, y: 9.8, z: 0.0)]

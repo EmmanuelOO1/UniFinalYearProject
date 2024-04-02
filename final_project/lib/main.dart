@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:final_project/Sensor.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Buss stop game'),
+      home: const MyHomePage(title: 'Random Art'),
     );
   }
 }
@@ -83,6 +86,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Random random = new Random();
+    int num = random.nextInt(10) + 200;
+
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -118,8 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Image.network(
+              'https://picsum.photos/${num}',
             ),
             Text(
               '$_counter',
